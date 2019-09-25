@@ -4,14 +4,16 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
 endif
 
-" Specify a directory for plugins 
+" Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
-" UX Plugins
+" UX & Controls Plugins
 Plug 'tpope/vim-sensible'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Language Plugins
 Plug 'sheerun/vim-polyglot'
+Plug 'davidhalter/jedi-vim'
 
 " Style Plugins
 Plug 'morhetz/gruvbox'
@@ -29,6 +31,7 @@ call plug#end()
 
 " STYLE
 let g:gruvbox_italic=0
+let g:gruvbox_italicize_comments=1
 colorscheme gruvbox
 set background=dark
 let g:rainbow_activate=1
@@ -48,3 +51,13 @@ let g:lightline = {
 
 " Interface
 set number
+
+" Git Config
+autocmd BufWritePost * GitGutter
+
+" Python
+let g:jedi#show_call_signatures = "2"
+let g:jedi#use_splits_not_buffers = "bottom"
+let g:jedi#popup_on_dot = 0
+autocmd FileType python setlocal completeopt-=preview
+set splitbelow
